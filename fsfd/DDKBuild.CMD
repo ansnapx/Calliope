@@ -1,0 +1,45 @@
+REM *******************************************************
+REM DDKBuild.CMD - Author: Michael Alexander Priske
+REM
+REM Usage: DDkBuild [W2K|WXP|WNET] [CHECKED|FREE]
+REM 
+REM *******************************************************
+
+@ECHO OFF
+CLS
+
+VERIFY OTHER 2>NUL
+SETLOCAL ENABLEEXTENSIONS
+IF ERRORLEVEL 1 GOTO ERROR_EXTENSIONS
+IF "%IFSPATH%" EQU "" GOTO ERROR_PATH
+
+SET BUILD_OS=WNET
+IF /I "%1" EQU "WXP" SET BUILD_OS=WXP
+IF /I "%1" EQU "W2K" SET BUILD_OS=W2K
+
+SET BUILD_TYPE=FREE
+IF /I "%2" EQU "CHECKED" SET BUILD_TYPE=CHECKED
+
+ECHO .
+ECHO Building %BUILD_OS% %BUILD_TYPE% using [%IFSPATH%].
+ECHO .
+
+PUSHD .
+CALL %IFSPATH%\bin\setenv.bat %IFSPATH% %BUILD_OS% %BUILD_TYPE%
+POPD
+
+BUILD.EXE -cZI
+GOTO EXIT
+
+:ERROR_PATH
+ECHO ERROR: IFSPATH environment variable not set
+GOTO EXIT
+
+:ERROR_EXTENSIONS
+ECHO ERROR: NT/W2K/WXP/WNET only
+
+:EXIT
+SET BUILD_OS=
+SET BUILD_TYPE=
+
+

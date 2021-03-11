@@ -1,0 +1,15 @@
+TARGETNAME=pgpfsfd
+TARGETPATH=obj
+TARGETTYPE=DRIVER
+DRIVERTYPE=FS
+
+NT_UP=0
+
+C_DEFINES= $(C_DEFINES) /DDDK_TYPE_WXP /D_KERNEL_NT
+
+!include sources.inc
+
+
+
+       
+

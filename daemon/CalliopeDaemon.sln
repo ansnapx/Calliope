@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CalliopeDaemon", "CalliopeDaemon.vcproj", "{C2928F4B-E149-4AE8-80F0-26AF44B2E39C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pgpsdkm", "..\pgpsdkm\pgpsdkm.vcproj", "{F74E7F72-F841-4740-A1F9-13ABC7044A3C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetshareFD", "..\fsfd\FilFile.vcproj", "{D46CDC70-C822-4DB1-B867-5B8634FC81F6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F74E7F72-F841-4740-A1F9-13ABC7044A3C} = {F74E7F72-F841-4740-A1F9-13ABC7044A3C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KeyConfig", "..\KeyConfig\KeyConfig.vcproj", "{B9877E30-C580-415B-94A0-8737A1669F8E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2928F4B-E149-4AE8-80F0-26AF44B2E39C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C2928F4B-E149-4AE8-80F0-26AF44B2E39C}.Debug|Win32.Build.0 = Debug|Win32
+		{C2928F4B-E149-4AE8-80F0-26AF44B2E39C}.Release|Win32.ActiveCfg = Release|Win32
+		{C2928F4B-E149-4AE8-80F0-26AF44B2E39C}.Release|Win32.Build.0 = Release|Win32
+		{F74E7F72-F841-4740-A1F9-13ABC7044A3C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F74E7F72-F841-4740-A1F9-13ABC7044A3C}.Debug|Win32.Build.0 = Debug|Win32
+		{F74E7F72-F841-4740-A1F9-13ABC7044A3C}.Release|Win32.ActiveCfg = Release|Win32
+		{F74E7F72-F841-4740-A1F9-13ABC7044A3C}.Release|Win32.Build.0 = Release|Win32
+		{D46CDC70-C822-4DB1-B867-5B8634FC81F6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D46CDC70-C822-4DB1-B867-5B8634FC81F6}.Debug|Win32.Build.0 = Debug|Win32
+		{D46CDC70-C822-4DB1-B867-5B8634FC81F6}.Release|Win32.ActiveCfg = Release|Win32
+		{D46CDC70-C822-4DB1-B867-5B8634FC81F6}.Release|Win32.Build.0 = Release|Win32
+		{B9877E30-C580-415B-94A0-8737A1669F8E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B9877E30-C580-415B-94A0-8737A1669F8E}.Debug|Win32.Build.0 = Debug|Win32
+		{B9877E30-C580-415B-94A0-8737A1669F8E}.Release|Win32.ActiveCfg = Release|Win32
+		{B9877E30-C580-415B-94A0-8737A1669F8E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,73 @@
+;;;
+;;; PGPfsfd installation file,
+;;;
+;;; Copyright (c) 2005, PGP Corporation
+;;;
+
+[Version]
+signature   =   "$Windows NT$"
+Class		=	"Encryption"
+ClassGuid 	= 	{a0a701c0-a511-42ff-aa6c-06dc0395576f}
+Provider 	=   %pgp%
+DriverVer   =   08/01/2005,1.0.0.0
+
+[DestinationDirs]
+DefaultDestDir	      = 12
+pgpfsDriverFiles      = 12 			;%windir%\system32\drivers
+
+;;
+;; Default install sections
+;;
+
+[DefaultInstall]
+OptionDesc          = %pgpfsServiceDesc%
+CopyFiles           = pgpfsfd.DriverFiles
+
+[SourceDisksNames]
+1 = %Disk1%
+
+[SourceDisksFiles]
+pgpfsfd.sys = 1
+
+[DefaultInstall.Services]
+AddService = %pgpfsServiceName%,,pgpfsfd.Service
+
+;;
+;; Default uninstall sections
+;;
+
+[DefaultUninstall]
+DelFiles   = pgpfsfd.DriverFiles
+
+[DefaultUninstall.Services]
+DelService = pgpfsfd,0x200		; Flags note to stop service first
+
+;
+; Services Section
+;
+
+[pgpfsfd.Service]
+DisplayName      = %pgpfsServiceName%
+Description      = %pgpfsServiceDesc%
+ServiceBinary    = %12%\pgpfsfd.sys		;%windir%\system32\drivers\pgpfsfd.sys
+ServiceType      = 2					;SERVICE_FILE_SYSTEM_DRIVER
+StartType        = 0					;SERVICE_BOOT_START
+ErrorControl     = 1					;SERVICE_ERROR_NORMAL
+LoadOrderGroup   = "FSFilter Encryption"
+
+;
+; Copy Files
+;
+
+[pgpfsfd.DriverFiles]
+pgpfsfd.sys
+
+;;
+;; String Section
+;;
+
+[Strings]
+pgp			   	 = "PGP Corporation"
+pgpfsServiceDesc = "PGP FSFD"
+pgpfsServiceName = "pgpfsfd"
+Disk1            = "PGP Source Media"

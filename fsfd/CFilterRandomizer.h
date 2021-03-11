@@ -1,0 +1,68 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// CFilterRandomizer.h: interface for the CFilterRandomizer class.
+//
+// Author: Michael Alexander Priske
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#if !defined(AFX_CFILTERRANDOMIZER_H__79614BBC_7357_4922_9A59_CA05B3CF7200__INCLUDED_)
+#define AFX_CFILTERRANDOMIZER_H__79614BBC_7357_4922_9A59_CA05B3CF7200__INCLUDED_
+
+#if _MSC_VER > 1000
+#pragma once
+#endif // _MSC_VER > 1000
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#include "IoControl.h"
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+class CFilterRandomizer
+{
+public:
+
+	enum c_constants 
+	{ 
+		c_blockSize	  = 16,								// block size of symmetric cipher (AES)
+		c_sizeLow	  = 0x2000,
+		c_sizeHigh	  = FILFILE_RANDOM_REQUEST_SIZE,	// first c_blocksize bytes are used by internal Permutate()
+		c_sizeMax	  = 64 * 1024,
+	};
+
+	NTSTATUS			Init(bool high);
+	void				Close();
+	NTSTATUS			Get(UCHAR *target, ULONG size);
+    
+private:
+
+	NTSTATUS			Prepare(ULONG size = 0);
+	NTSTATUS			Gather();
+	NTSTATUS			Permutate();
+
+						// DATA
+	UCHAR*				m_random;
+	ULONG				m_size;
+	ULONG				m_next;
+
+	FAST_MUTEX			m_lock;
+
+	bool				m_high;			// quality of random data
+	bool				m_fired;		// ongoing fire event
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+inline
+NTSTATUS CFilterRandomizer::Init(bool high)
+{
+	ExInitializeFastMutex(&m_lock);
+
+	m_high = high;
+
+	return STATUS_SUCCESS;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#endif// AFX_CFILTERRANDOMIZER_H__79614BBC_7357_4922_9A59_CA05B3CF7200__INCLUDED_
